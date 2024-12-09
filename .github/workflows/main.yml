@@ -1,10 +1,10 @@
-# This is a basic workflow to help you get started with Actions
+# This is a workflow to test the AI model in the project-architecture branch
 
 name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
+  # Triggers the workflow on push or pull request events only for the "project-architecture" branch
   push:
     branches: [ "project-architecture" ]
   pull_request:
@@ -13,26 +13,40 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   ai-model-test:
     name: Test AI Model Placeholder
     runs-on: ubuntu-latest
+
     steps:
+      # Step 1: Check out the correct branch
       - name: Check out code
         uses: actions/checkout@v3
+        with:
+          ref: project-architecture  # Ensure the correct branch is checked out
 
+      # Step 2: Debug the file structure to confirm paths
+      - name: Debug File Paths
+        run: |
+          echo "Current Directory:"
+          pwd
+          echo "Files and Directories:"
+          ls -R
+
+      # Step 3: Set up Python environment
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
 
+      # Step 4: Install dependencies
       - name: Install TensorFlow
         run: pip install tensorflow
 
+      # Step 5: Run the test script
       - name: Run Model Test
-        run: python project-architecture/ai-model/test_h5_model.py
+        run: python ai-model/test_h5_model.py  # Ensure the correct path is used
+
             
           
   frontend-check:
