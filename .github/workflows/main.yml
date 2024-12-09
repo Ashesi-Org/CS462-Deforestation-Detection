@@ -33,7 +33,7 @@ jobs:
 
       - name: Run Model Test
         run: python ai-model/test_h5_model.py
-             python ai-model/best_model.h5
+            
           
   frontend-check:
     name: Validate Frontend Placeholder
