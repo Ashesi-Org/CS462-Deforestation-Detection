@@ -1,16 +1,10 @@
-# This is a workflow to test the AI model in the project-architecture branch
-
 name: CI
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events only for the "project-architecture" branch
   push:
     branches: [ "project-architecture" ]
   pull_request:
     branches: [ "project-architecture" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
@@ -23,9 +17,9 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
         with:
-          ref: project-architecture  # Ensure the correct branch is checked out
+          ref: project-architecture
 
-      # Step 2: Debug the file structure to confirm paths
+      # Step 2: Debug file paths to confirm locations
       - name: Debug File Paths
         run: |
           echo "Current Directory:"
@@ -39,13 +33,18 @@ jobs:
         with:
           python-version: '3.9'
 
-      # Step 4: Install dependencies
-      - name: Install TensorFlow
-        run: pip install tensorflow
+      # Step 4: Disable GPU warnings (optional)
+      - name: Disable GPU
+        run: export CUDA_VISIBLE_DEVICES=""
 
-      # Step 5: Run the test script
+      # Step 5: Install the latest TensorFlow version
+      - name: Install TensorFlow
+        run: pip install tensorflow --upgrade
+
+      # Step 6: Run the test script
       - name: Run Model Test
-        run: python ai-model/test_h5_model.py  # Ensure the correct path is used
+        run: python ai-model/test_h5_model.py
+
 
             
           
