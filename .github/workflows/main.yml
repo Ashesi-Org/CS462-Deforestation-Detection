@@ -1,4 +1,4 @@
-# This is a basic workflow to help you get started with Actions
+e# This is a basic workflow to help you get started with Actions
 
 name: CI
 
@@ -36,12 +36,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Validate HTML
         run: |
           echo "Validating HTML..."
-          cat front-end/placeholderindex.html
+          cat front-end development/placeholderindex.html
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
