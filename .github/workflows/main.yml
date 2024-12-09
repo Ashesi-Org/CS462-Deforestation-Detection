@@ -21,16 +21,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
 
-      - name: Run Placeholder Script
-        run: |
-          python ai-model/best_model.h5
+      - name: Install TensorFlow
+        run: pip install tensorflow
+
+      - name: Run Model Test
+        run: python ai-model/test_h5_model.py
+             python ai-model/best_model.h5
+          
   frontend-check:
     name: Validate Frontend Placeholder
     runs-on: ubuntu-latest
