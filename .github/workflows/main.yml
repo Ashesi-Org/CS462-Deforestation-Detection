@@ -30,7 +30,7 @@ jobs:
 
       - name: Run Placeholder Script
         run: |
-          python ai-model/placeholdermodel.py
+          python ai-model/best_model.h5
   frontend-check:
     name: Validate Frontend Placeholder
     runs-on: ubuntu-latest
