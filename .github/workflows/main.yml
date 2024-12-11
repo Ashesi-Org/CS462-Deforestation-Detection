@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "project-architecture" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "project-architecture" ]
   workflow_dispatch:
 
 jobs:
@@ -43,7 +43,7 @@ jobs:
 
       # Step 6: Run the test script
       - name: Run Model Test
-        run: python ai-model/test_model_h5.h5
+        run: python ai-model/test_h5_model.py
 
 
             
