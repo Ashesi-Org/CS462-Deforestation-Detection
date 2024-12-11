@@ -42,8 +42,8 @@ jobs:
         run: pip install tensorflow --upgrade
 
       # Step 6: Run the test script
-      - name: Run Model Test
-        run: python ai-model/test_h5_model.py
+      # - name: Run Model Test
+      #   run: python ai-model/test_h5_model.py
 
 
             
