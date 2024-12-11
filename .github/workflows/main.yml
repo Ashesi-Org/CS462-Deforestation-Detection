@@ -43,7 +43,7 @@ jobs:
 
       # Step 6: Run the test script
       - name: Run Model Test
-        run: python ai-model/best_model.keras
+        run: python ai-model/test_model_h5.h5
 
 
             
