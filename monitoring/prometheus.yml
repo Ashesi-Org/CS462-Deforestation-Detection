@@ -2,6 +2,6 @@ global:
   scrape_interval: 15s
 
 scrape_configs:
-  - job_name: "application_metrics"
+  - job_name: "landslide_metrics"
     static_configs:
       - targets: ["localhost:8000"]  # Replace with your application's metrics endpoint
