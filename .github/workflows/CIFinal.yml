@@ -3,10 +3,10 @@ name: CI for Project
 on:
   push:
     branches:
-      - main
+      - project-architecture
   pull_request:
     branches:
-      - main
+      - project-architecture
 
 jobs:
   backend:
