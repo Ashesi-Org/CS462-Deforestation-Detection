@@ -80,6 +80,19 @@ jobs:
           echo "Prometheus is running at: http://localhost:9090"
           echo "Grafana is running at: http://localhost:3000"
 
+
+      - name: Deploy Backend with LogRocket Feedback
+        run: |
+          gcloud run deploy ${{ env.BACKEND_SERVICE }} \
+            --image ${{ env.GCP_REGION }}/${{ secrets.GCP_PROJECT_ID }}/landslide-backend:${{ github.sha }} \
+            --platform managed \
+            --region ${{ env.REGION }} \
+            --allow-unauthenticated \
+            --memory 2Gi \
+            --cpu 2 \
+            --set-env-vars="FLASK_ENV=production,LOGROCKET_APP_ID=n9q23s/cs462-landslide-detection"
+
+
           
       - name: Configure Firewall
         run: |
