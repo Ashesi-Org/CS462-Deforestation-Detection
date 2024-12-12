@@ -54,6 +54,14 @@ jobs:
         run: |
           echo "BACKEND_URL=$(gcloud run services describe ${{ env.BACKEND_SERVICE }} --platform managed --region ${{ env.REGION }} --format 'value(status.url)')" >> $GITHUB_ENV
 
+      - name: Configure Firewall
+        run: |
+          gcloud compute firewall-rules create allow-port-8080 \
+            --allow tcp:8080 \
+            --source-ranges 0.0.0.0/0 \
+            --target-tags http-server \
+            --description "Allow port 8080 for HTTP traffic" || true
+
       - name: Deploy Frontend to Cloud Run
         run: |
           gcloud run deploy ${{ env.FRONTEND_SERVICE }} \
@@ -61,10 +69,11 @@ jobs:
             --platform managed \
             --region ${{ env.REGION }} \
             --allow-unauthenticated \
-            
             --memory 1Gi \
             --cpu 1 \
-            --set-env-vars="VITE_API_URL=${{ env.BACKEND_URL }},PORT=80"
+            --port 8080 \
+            --set-env-vars="VITE_API_URL=${{ env.BACKEND_URL }}" \
+            --ingress all
 
       - name: Output Service URLs
         run: |
