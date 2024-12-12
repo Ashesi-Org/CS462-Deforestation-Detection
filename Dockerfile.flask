@@ -20,10 +20,12 @@ COPY app.py .
 COPY best_model.keras .
 
 # Create uploads directory
-RUN mkdir uploads
+ENV PORT=8080
+ENV FLASK_APP=app.py
+ENV FLASK_ENV=production
 
 # Expose port
-EXPOSE 5000
+EXPOSE 8080
 
 # Start the application
-CMD ["python", "app.py"] 
+CMD exec gunicorn --bind :$PORT app:app 
