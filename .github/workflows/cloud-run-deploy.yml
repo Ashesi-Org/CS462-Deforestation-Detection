@@ -1,0 +1,68 @@
+name: Deploy to Cloud Run
+
+env:
+  FRONTEND_SERVICE: landslide-frontend
+  BACKEND_SERVICE: landslide-backend
+  REGION: us-central1
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0.2.0
+        with:
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+
+      - name: Configure Docker
+        run: |
+          gcloud auth configure-docker
+
+      - name: Build and Push Frontend Docker Image
+        run: |
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/landslide-frontend:${{ github.sha }} -f Dockerfile.prod .
+          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/landslide-frontend:${{ github.sha }}
+
+      - name: Build and Push Backend Docker Image
+        run: |
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/landslide-backend:${{ github.sha }} -f Dockerfile.flask .
+          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/landslide-backend:${{ github.sha }}
+
+      - name: Deploy Backend to Cloud Run
+        run: |
+          gcloud run deploy ${{ env.BACKEND_SERVICE }} \
+            --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/landslide-backend:${{ github.sha }} \
+            --platform managed \
+            --region ${{ env.REGION }} \
+            --allow-unauthenticated \
+            --memory 2Gi \
+            --cpu 2 \
+            --set-env-vars="FLASK_ENV=production"
+
+      - name: Get Backend URL
+        run: |
+          echo "BACKEND_URL=$(gcloud run services describe ${{ env.BACKEND_SERVICE }} --platform managed --region ${{ env.REGION }} --format 'value(status.url)')" >> $GITHUB_ENV
+
+      - name: Deploy Frontend to Cloud Run
+        run: |
+          gcloud run deploy ${{ env.FRONTEND_SERVICE }} \
+            --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/landslide-frontend:${{ github.sha }} \
+            --platform managed \
+            --region ${{ env.REGION }} \
+            --allow-unauthenticated \
+            --set-env-vars="VITE_API_URL=${{ env.BACKEND_URL }}"
+
+      - name: Output Service URLs
+        run: |
+          echo "Frontend URL: $(gcloud run services describe ${{ env.FRONTEND_SERVICE }} --platform managed --region ${{ env.REGION }} --format 'value(status.url)')"
+          echo "Backend URL: ${{ env.BACKEND_URL }}" 
