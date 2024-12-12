@@ -29,6 +29,10 @@ jobs:
         run: |
           gcloud auth configure-docker ${{ env.GCP_REGION }}
 
+          - name: Install Backend Dependencies
+          run: |
+          pip install -r backend/requirements.txt
+
       - name: Build and Push Frontend Docker Image
         run: |
           docker build -t ${{ env.GCP_REGION }}/${{ secrets.GCP_PROJECT_ID }}/landslide-frontend:${{ github.sha }} -f Dockerfile.prod .
