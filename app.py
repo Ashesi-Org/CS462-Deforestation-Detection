@@ -15,6 +15,16 @@ import traceback
 # Initialize the Flask app
 app = Flask(__name__)
 logrocket.init('n9q23s/cs462-landslide-detection')
+
+@app.before_request
+def log_request():
+    logrocket.capture_message(f"Endpoint accessed: {request.path}")
+
+@app.route('/test-logrocket')
+def test_logrocket():
+    logrocket.capture_message("Test endpoint accessed.")
+    return {"message": "LogRocket integration successful!"}
+
 # Allow requests from all Cloud Run domains
 CORS(app, resources={r"/predict": {"origins": "*"}})
 
