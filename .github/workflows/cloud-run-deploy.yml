@@ -73,7 +73,8 @@ jobs:
             --cpu 1 \
             --port 8080 \
             --set-env-vars="VITE_API_URL=${{ env.BACKEND_URL }}" \
-            --ingress all
+            --ingress all \
+            --timeout 600s
 
       - name: Output Service URLs
         run: |
