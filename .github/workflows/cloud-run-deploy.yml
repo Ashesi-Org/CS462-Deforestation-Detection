@@ -58,7 +58,7 @@ jobs:
       - name: Run Backend Tests
         run: |
           pip install requests pytest
-          pytest backendtests.py
+          pytest tests/backendtests.py
           
       - name: Configure Firewall
         run: |
