@@ -8,6 +8,14 @@ This project is developed as part of the CS462: Cloud Computing course to demons
 -Continuous Feedback: Collects user and system feedback for iterative improvements.
 -Cloud Deployment: Fully hosted on Google Cloud Run for scalability and reliability.
 
+# Technologies Used
+Frontend: Vite, React, 
+Backend: Python, Flask, TensorFlow
+Machine Learning: Trained models in .h5 format
+DevOps Tools: Docker, GitHub Actions, PyTest
+Cloud Platform: Google Cloud Run
+Monitoring & Feedback: LogRocket, Grafana
+
 # How It Works
 Data Collection: Environmental data (e.g., rainfall, soil moisture, terrain features) is fed into the system.
 Model Prediction: The AI model processes the data and predicts the likelihood of landslides.
