@@ -61,10 +61,10 @@ jobs:
             --platform managed \
             --region ${{ env.REGION }} \
             --allow-unauthenticated \
+            --port 80 \
             --memory 1Gi \
             --cpu 1 \
-            --port 8080 \
-            --set-env-vars="VITE_API_URL=${{ env.BACKEND_URL 
+            --set-env-vars="VITE_API_URL=${{ env.BACKEND_URL }},PORT=80"
 
       - name: Output Service URLs
         run: |
