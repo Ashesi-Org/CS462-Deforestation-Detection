@@ -14,7 +14,7 @@ import traceback
 
 # Initialize the Flask app
 app = Flask(__name__)
-
+logrocket.init('n9q23s/cs462-landslide-detection')
 # Allow requests from all Cloud Run domains
 CORS(app, resources={r"/predict": {"origins": "*"}})
 
