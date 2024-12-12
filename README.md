@@ -4,17 +4,17 @@ The Landslide Detection System is a cloud-based platform designed to identify an
 This project is developed as part of the CS462: Cloud Computing course to demonstrate end-to-end application development using DevOps principles.
 
 # Features
--Machine Learning-Based Detection: Utilizes trained models to predict landslide risks based on environmental data.
--Continuous Feedback: Collects user and system feedback for iterative improvements.
--Cloud Deployment: Fully hosted on Google Cloud Run for scalability and reliability.
+- Machine Learning-Based Detection: Utilizes trained models to predict landslide risks based on environmental data.
+- Continuous Feedback: Collects user and system feedback for iterative improvements.
+- Cloud Deployment: Fully hosted on Google Cloud Run for scalability and reliability.
 
 # Technologies Used
-Frontend: Vite, React, 
-Backend: Python, Flask, TensorFlow
-Machine Learning: Trained models in .h5 format
-DevOps Tools: Docker, GitHub Actions, PyTest
-Cloud Platform: Google Cloud Run
-Monitoring & Feedback: LogRocket, Grafana
+- Frontend: React, 
+- Backend: Python, Flask, TensorFlow
+- Machine Learning: Trained models in .h5 format
+- DevOps Tools: Docker, GitHub Actions, PyTest, Prometheus, Grafana
+- Cloud Platform: Google Cloud Run
+- Monitoring & Feedback: LogRocket, Grafana
 
 # How It Works
 Data Collection: Environmental data (e.g., rainfall, soil moisture, terrain features) is fed into the system.
