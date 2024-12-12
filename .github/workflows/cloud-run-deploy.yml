@@ -59,6 +59,27 @@ jobs:
         run: |
           pip install requests pytest
           pytest tests/backendtests.py
+
+
+      - name: Deploy Prometheus for Monitoring
+        run: |
+          docker run -d \
+            --name prometheus \
+            -p 9090:9090 \
+            prom/prometheus
+
+      - name: Deploy Grafana for Visualization
+        run: |
+          docker run -d \
+            --name grafana \
+            -p 3000:3000 \
+            grafana/grafana
+
+      - name: Output Monitoring URLs
+        run: |
+          echo "Prometheus is running at: http://localhost:9090"
+          echo "Grafana is running at: http://localhost:3000"
+
           
       - name: Configure Firewall
         run: |
