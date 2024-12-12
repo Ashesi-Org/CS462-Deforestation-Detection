@@ -62,19 +62,19 @@ jobs:
             --target-tags http-server \
             --description "Allow port 8080 for HTTP traffic" || true
 
-      - name: Deploy Frontend to Cloud Run
+# ... other configuration ...
+
+      - name: Deploy Backend to Cloud Run
         run: |
-          gcloud run deploy ${{ env.FRONTEND_SERVICE }} \
-      #       --image ${{ env.GCP_REGION }}/${{ secrets.GCP_PROJECT_ID }}/landslide-frontend:${{ github.sha }} \
-      #       --platform managed \
-      #       --region ${{ env.REGION }} \
-      #       --allow-unauthenticated \
-      #       --memory 1Gi \
-      #       --cpu 1 \
-      #       --port 8080 \
-      #       --set-env-vars="VITE_API_URL=${{ env.BACKEND_URL }}" \
-      #       --ingress all \
-      #       --timeout 600s
+          gcloud run deploy ${{ env.BACKEND_SERVICE }} \
+            --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ env.BACKEND_SERVICE }}:latest \
+            --platform managed \
+            --region us-central1 \
+            --memory 2Gi \
+            --cpu 2 \
+            --port 8080 \
+            --allow-unauthenticated \
+            --set-env-vars="FLASK_ENV=production"
 
       - name: Output Service URLs
         run: |
