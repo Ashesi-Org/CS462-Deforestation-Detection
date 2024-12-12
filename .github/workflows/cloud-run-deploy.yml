@@ -62,9 +62,9 @@ jobs:
             --target-tags http-server \
             --description "Allow port 8080 for HTTP traffic" || true
 
-      # - name: Deploy Frontend to Cloud Run
-      #   run: |
-      #     gcloud run deploy ${{ env.FRONTEND_SERVICE }} \
+      - name: Deploy Frontend to Cloud Run
+        run: |
+          gcloud run deploy ${{ env.FRONTEND_SERVICE }} \
       #       --image ${{ env.GCP_REGION }}/${{ secrets.GCP_PROJECT_ID }}/landslide-frontend:${{ github.sha }} \
       #       --platform managed \
       #       --region ${{ env.REGION }} \
