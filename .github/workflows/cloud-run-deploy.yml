@@ -53,7 +53,13 @@ jobs:
       - name: Get Backend URL
         run: |
           echo "BACKEND_URL=$(gcloud run services describe ${{ env.BACKEND_SERVICE }} --platform managed --region ${{ env.REGION }} --format 'value(status.url)')" >> $GITHUB_ENV
-
+        
+      # Step 6: Run Backend Tests
+      - name: Run Backend Tests
+        run: |
+          pip install requests pytest
+          pytest backendtests.py
+          
       - name: Configure Firewall
         run: |
           gcloud compute firewall-rules create allow-port-8080 \
