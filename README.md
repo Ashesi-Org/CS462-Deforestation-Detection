@@ -36,6 +36,19 @@ We created a .yml file that used Github Actions for integration, Docker for cont
 ![WhatsApp Image 2024-12-12 at 06 57 46_74e892bc](https://github.com/user-attachments/assets/ccec2ec3-cac6-4124-9cd6-7e1e5d64e4bc)
 ![WhatsApp Image 2024-12-12 at 07 44 00_f5c44d47](https://github.com/user-attachments/assets/fbba0260-26c3-4b7f-8eb8-51132ea078d5)
 
+# Continuous Monitoring
+
+![WhatsApp Image 2024-12-12 at 11 07 05_fbb3e617](https://github.com/user-attachments/assets/6b353b70-6d22-4339-825f-04cff846b3dd)
+![WhatsApp Image 2024-12-12 at 11 07 25_0ecea6e7](https://github.com/user-attachments/assets/cc7dc935-4b3c-4c91-ab12-c44f7b90e396)
+
+
+
+
+# Continuous Feedback
+![WhatsApp Image 2024-12-12 at 11 34 13_4b408464](https://github.com/user-attachments/assets/dd127171-2e86-4a6f-a1a9-66c49890c8c1)
+
+
+
 
 
 
