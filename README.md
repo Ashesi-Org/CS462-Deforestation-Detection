@@ -1,4 +1,4 @@
-# CS462-Deforestation-Detection
+# CS462-Landslide-Detection
 # Overview
 The Landslide Detection System is a cloud-based platform designed to identify and monitor potential landslide-prone areas using advanced machine learning models. The system integrates a backend powered by AI, a frontend interface for user interaction, and cloud infrastructure for seamless deployment, monitoring, and feedback.
 This project is developed as part of the CS462: Cloud Computing course to demonstrate end-to-end application development using DevOps principles.
